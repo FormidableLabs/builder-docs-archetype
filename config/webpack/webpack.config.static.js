@@ -36,7 +36,7 @@ module.exports = {
         NODE_ENV: JSON.stringify("production")
       }
     }),
-    // TODO: add uglify & dedup
+    // TODO: add uglify & dedup https://github.com/FormidableLabs/builder-docs-archetype/issues/1
     new StatsWriterPlugin({
       filename: "stats.json"
     }),
