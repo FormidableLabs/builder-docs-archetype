@@ -36,5 +36,13 @@
     "eslint": "^1.10.3",
     "eslint-config-defaults": "^8.0.2",
     "eslint-plugin-filenames": "^0.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FormidableLabs/builder-docs-archetype.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FormidableLabs/builder-docs-archetype/issues"
+  },
+  "homepage": "https://github.com/FormidableLabs/builder-docs-archetype#readme"
 }
