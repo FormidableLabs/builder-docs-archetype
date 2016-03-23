@@ -1,11 +1,9 @@
 {
   "name": "builder-docs-archetype-dev",
-  "version": "0.0.2",
-  "description": "An archetype for testing static landing/documentation pages for our projects.",
+  "version": "0.0.3",
+  "description": "An archetype for building static landing/documentation pages for our projects. (Development)",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "author": "Paula Lavalle <paula.lavalle@formidable.com>",
   "license": "MIT",
   "dependencies": {
@@ -17,5 +15,15 @@
     "eslint-plugin-react": "^3.16.1",
     "http-server": "^0.8.5",
     "webpack-dev-server": "1.14.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FormidableLabs/builder-docs-archetype.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FormidableLabs/builder-docs-archetype/issues"
+  },
+  "homepage": "https://github.com/FormidableLabs/builder-docs-archetype#readme",
+  "peerDependencies": {}
 }
