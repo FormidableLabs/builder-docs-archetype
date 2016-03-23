@@ -43,6 +43,12 @@ module.exports = {
           presets: ["react", "es2015"]
         }
       }, {
+        test: /.svg$/,
+        loaders: [
+          "raw",
+          "image-webpack"
+        ]
+      }, {
         test: /\.hbs$/,
         loader: require.resolve("handlebars-loader")
       }, {

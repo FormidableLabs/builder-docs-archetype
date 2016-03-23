@@ -26,6 +26,7 @@
     "clean-webpack-plugin": "0.1.5",
     "handlebars": "^4.0.5",
     "handlebars-loader": "^1.1.4",
+    "image-webpack-loader": "^1.6.3",
     "raw-loader": "0.5.1",
     "static-site-generator-webpack-plugin": "2.0.1",
     "webpack": "1.12.9",
