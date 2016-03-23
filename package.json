@@ -8,12 +8,13 @@
     "lint-react": "eslint --ext .js,.jsx src",
     "lint-config": "eslint ./*.js",
     "lint": "builder concurrent lint-react lint-config",
-    "update-readme": "echo 'the cake is a lie'",
+    "update-readme": "npm update",
     "webpack-static": "webpack --config node_modules/builder-docs-archetype/config/webpack/webpack.config.static.js --progress --bail",
     "copy-assets": "cp -r static build/static",
     "build-static": "npm run update-readme && npm run webpack-static && npm run copy-assets",
     "open-static": "open http://localhost:8080",
-    "server-static": "http-server build"
+    "server-static": "http-server build",
+    "builder:check": "eslint config"
   },
   "author": "Paula Lavalle <paula.lavalle@formidable.com>",
   "license": "MIT",
@@ -29,5 +30,11 @@
     "static-site-generator-webpack-plugin": "2.0.1",
     "webpack": "1.12.9",
     "webpack-stats-plugin": "0.1.1"
+  },
+  "devDependencies": {
+    "builder-support": "^0.3.0",
+    "eslint": "^1.10.3",
+    "eslint-config-defaults": "^8.0.2",
+    "eslint-plugin-filenames": "^0.2.0"
   }
 }
