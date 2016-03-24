@@ -45,8 +45,8 @@ module.exports = {
       }, {
         test: /.svg$/,
         loaders: [
-          "raw",
-          "image-webpack"
+          require.resolve("raw-loader"),
+          require.resolve("image-webpack-loader")
         ]
       }, {
         test: /\.hbs$/,
