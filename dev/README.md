@@ -3,6 +3,17 @@ Builder Docs Archetype
 
 A [Builder][] archetype for Formidable static React landers.
 
+## Requirements
+
+1. In the root, you need to create a `./static-routes.js` file that exports an array
+of all the routes your heart desires.
+
+        module.exports = [
+          "/",
+          "/about",
+          "/pineapples"
+        ];
+
 ## Builder Dependencies
 
 You can read the [Builder docs][] for the full story. Here is an overview of the
