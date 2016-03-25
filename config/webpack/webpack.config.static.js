@@ -1,10 +1,11 @@
 "use strict";
 
-var CleanPlugin = require("clean-webpack-plugin");
 var path = require("path");
+var webpack = require("webpack");
+
+var CleanPlugin = require("clean-webpack-plugin");
 var StaticSiteGeneratorPlugin = require("static-site-generator-webpack-plugin");
 var StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
-var DefinePlugin = require("webpack").DefinePlugin;
 
 var base = require("./webpack.config.dev.js");
 
@@ -30,10 +31,16 @@ module.exports = {
   module: base.module,
   plugins: [
     new CleanPlugin([ path.join(ROOT, OUTPUT_DIR) ]),
-    new DefinePlugin({
+    new webpack.DefinePlugin({
       "process.env": {
         // Disable warnings for static build
         NODE_ENV: JSON.stringify("production")
+      }
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
       }
     }),
     // TODO: add uglify & dedup https://github.com/FormidableLabs/builder-docs-archetype/issues/1
