@@ -30,17 +30,17 @@ module.exports = {
   resolve: base.resolve,
   module: base.module,
   plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
     new CleanPlugin([ path.join(ROOT, OUTPUT_DIR) ]),
     new webpack.DefinePlugin({
       "process.env": {
         // Disable warnings for static build
         NODE_ENV: JSON.stringify("production")
+      }
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
       }
     }),
     // TODO: add uglify & dedup https://github.com/FormidableLabs/builder-docs-archetype/issues/1
