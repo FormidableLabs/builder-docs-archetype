@@ -37,7 +37,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         // Exclude formidable-landers for `npm link` purposes
-        exclude: /(node_modules|formidable-landers)/,
+        include: /(src|docs)/,
         loader: require.resolve("babel-loader"),
         query: {
           presets: ["react", "es2015"]
