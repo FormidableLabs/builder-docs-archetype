@@ -36,11 +36,16 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        // Exclude formidable-landers for `npm link` purposes
-        exclude: /(node_modules|formidable-landers)/,
+        // Make sure to formidable-landers is excluded for `npm link` purposes
+        include: [
+          path.resolve(SRC),
+          path.resolve(ROOT, "node_modules", "victory-chart"),
+          path.resolve(ROOT, "node_modules", "victory-core"),
+          path.resolve(ROOT, "node_modules", "victory-pie")
+        ],
         loader: require.resolve("babel-loader"),
         query: {
-          presets: ["react", "es2015"]
+          presets: ["es2015", "stage-1", "react"]
         }
       }, {
         test: /.svg$/,
