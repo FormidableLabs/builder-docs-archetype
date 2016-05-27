@@ -29,7 +29,7 @@
     "handlebars-loader": "^1.1.4",
     "image-webpack-loader": "^1.6.3",
     "raw-loader": "0.5.1",
-    "static-site-generator-webpack-plugin": "2.0.1",
+    "static-site-generator-webpack-plugin": "2.1.0",
     "webpack": "1.12.9",
     "webpack-stats-plugin": "0.1.1"
   },

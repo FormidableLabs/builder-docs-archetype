@@ -45,6 +45,25 @@ module.exports = {
     new StatsWriterPlugin({
       filename: "stats.json"
     }),
-    new StaticSiteGeneratorPlugin("main", routes)
+    new StaticSiteGeneratorPlugin("main", routes, null, {
+      // Shim browser globals.
+      navigator: {
+        // Needed for: `./~/bowser/src/bowser.js`
+        userAgent: ""
+      },
+      window: {},
+      document: {
+        // Needed for: `./~/formidable-landers/~/radium/lib/keyframes.js`
+        createElement: function () {
+          // Needs to return something for code like: `"draggable" in document.createElement("div")`
+          return {
+            setAttribute: function () {}
+          };
+        },
+        head: {
+          appendChild: function () {}
+        }
+      }
+    })
   ]
 };
