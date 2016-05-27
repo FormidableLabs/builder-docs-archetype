@@ -11,7 +11,8 @@
     "webpack-static": "webpack --config node_modules/builder-docs-archetype/config/webpack/webpack.config.static.js --progress --bail",
     "copy-assets": "cp -r static build/static",
     "update-project": "echo YOU NEED TO DEFINE THIS IN YOUR PROJECT",
-    "build-static": "builder run update-project && builder run webpack-static && builder run copy-assets",
+    "build-static": "builder run clean-static && builder run update-project && builder run webpack-static && builder run copy-assets",
+    "clean-static": "rm -rf build",
     "open-static": "open http://localhost:8080",
     "server-static": "http-server build",
     "builder:check": "eslint config"
