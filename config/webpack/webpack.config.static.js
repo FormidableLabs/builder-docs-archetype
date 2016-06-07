@@ -31,8 +31,8 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
-        // Disable warnings for static build
-        NODE_ENV: JSON.stringify("production")
+        // On travis, production will disable warnings for static build
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || "staging")
       }
     }),
     new webpack.optimize.DedupePlugin(),
@@ -45,6 +45,29 @@ module.exports = {
     new StatsWriterPlugin({
       filename: "stats.json"
     }),
-    new StaticSiteGeneratorPlugin("main", routes)
+    new StaticSiteGeneratorPlugin("main", routes, null, {
+      // Shim browser globals.
+      navigator: {
+        // Needed for: `./~/bowser/src/bowser.js`
+        userAgent: ""
+      },
+      window: {
+        // Optional client-side render checks whether document is undefined
+        // instead check whether it's being shimmed
+        __STATIC_GENERATOR: true
+      },
+      document: {
+        // Needed for: `./~/formidable-landers/~/radium/lib/keyframes.js`
+        createElement: function () {
+          // Needs to return something for code like: `"draggable" in document.createElement("div")`
+          return {
+            setAttribute: function () {}
+          };
+        },
+        head: {
+          appendChild: function () {}
+        }
+      }
+    })
   ]
 };
