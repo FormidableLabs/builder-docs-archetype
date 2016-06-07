@@ -51,11 +51,12 @@ module.exports = {
         // Needed for: `./~/bowser/src/bowser.js`
         userAgent: ""
       },
-      window: {},
-      document: {
+      window: {
         // Optional client-side render checks whether document is undefined
         // instead check whether it's being shimmed
-        shim: true,
+        __STATIC_GENERATOR: true
+      },
+      document: {
         // Needed for: `./~/formidable-landers/~/radium/lib/keyframes.js`
         createElement: function () {
           // Needs to return something for code like: `"draggable" in document.createElement("div")`
