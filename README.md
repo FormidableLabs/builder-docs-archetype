@@ -41,6 +41,7 @@ For tagged official releases _only_, make sure to:
 
 ```sh
 $ vim package.json            # Bump version
+$ vim CHANGELOG.md            # Add version notes
 $ builder-support gen-dev     # Generate `dev/*` files
 $ npm run builder:check       # Last check!
 $ git add package.json dev
