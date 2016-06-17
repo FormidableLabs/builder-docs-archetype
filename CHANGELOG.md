@@ -1,5 +1,8 @@
 # Docs Archetype
 
+# 1.0.3 (2016 Jun 17)
+  * Add `victory-examples` to webpack so that `victory-docs` can import components directly
+
 # 1.0.2 (2016 Jun 7)
   * Add global variables for static-site-generator-webpack-plugin to fix static build on Travis
 
