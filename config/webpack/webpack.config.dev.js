@@ -41,6 +41,7 @@ module.exports = {
           path.resolve(SRC),
           path.resolve(ROOT, "node_modules", "victory-chart"),
           path.resolve(ROOT, "node_modules", "victory-core"),
+          path.resolve(ROOT, "node_modules", "victory-examples"),
           path.resolve(ROOT, "node_modules", "victory-pie")
         ],
         loader: require.resolve("babel-loader"),
