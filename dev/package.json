@@ -7,7 +7,7 @@
   "author": "Paula Lavalle <paula.lavalle@formidable.com>",
   "license": "MIT",
   "dependencies": {
-    "babel-eslint": "^4.1.8",
+    "babel-eslint": "^5.0.0",
     "eslint": "^1.10.3",
     "eslint-config-defaults": "^8.0.2",
     "eslint-plugin-filenames": "^0.2.0",
