@@ -1,6 +1,6 @@
 {
   "name": "builder-docs-archetype",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "An archetype for building static landing/documentation pages for our projects.",
   "main": "index.js",
   "scripts": {
