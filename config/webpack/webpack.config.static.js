@@ -54,7 +54,9 @@ module.exports = {
       window: {
         // Optional client-side render checks whether document is undefined
         // instead check whether it's being shimmed
-        __STATIC_GENERATOR: true
+        __STATIC_GENERATOR: true,
+        // Needed for: `./~/babel-standalone/babel.js`
+        addEventListener: function () {}
       },
       document: {
         // Needed for: `./~/formidable-landers/~/radium/lib/keyframes.js`
@@ -68,6 +70,26 @@ module.exports = {
           appendChild: function () {}
         }
       }
-    })
+    }),
+    // Webpack's `--bail` option seems to **still** not be terminating the build
+    // with a non-zero exit code. This is the suggested interim hack.
+    //
+    // BUG: https://github.com/webpack/webpack/issues/708
+    /* eslint-disable no-console, no-invalid-this, no-magic-numbers, no-process-exit */
+    function () {
+      this.plugin("done", function (stats) {
+        var errs = stats.compilation.errors || [];
+
+        // Manually bail out if have errors and **not** in watch mode.
+        if (errs.length && process.argv.indexOf("--watch") === -1) {
+          // Need to manually log out errors.
+          errs.forEach(function (err) {
+            console.error("\n\n" + (err.stack || err));
+          });
+          process.exit(1);
+        }
+      });
+    }
+    /* eslint-enable no-console, no-invalid-this, no-magic-numbers, no-process-exit */
   ]
 };
