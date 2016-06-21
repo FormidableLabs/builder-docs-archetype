@@ -1,7 +1,11 @@
 # Docs Archetype
 
+# 1.0.5 (2016 Jun 21)
+  * Add plugin to force build failure when running `webpack-static`
+  * Add missing global variable to fix static build for `victory-docs`
+
 # 1.0.4 (2016 Jun 20)
-  * Upgrade `babel-eslint` so it depends on babel@6 
+  * Upgrade `babel-eslint` so it depends on babel@6
 
 # 1.0.3 (2016 Jun 17)
   * Add `victory-examples` to webpack so that `victory-docs` can import components directly
