@@ -1,3 +1,18 @@
 ---
 extends:
   - "./eslint/.eslintrc-config"
+
+plugins:
+  - import
+
+rules:
+  import/no-unresolved: [2, {commonjs: true}]
+  import/named: 2
+  import/default: 2
+  import/export: 2
+  import/no-commonjs: 0
+  import/no-amd: 2
+  import/imports-first: 1
+  import/no-duplicates: 1
+  import/newline-after-import: 1
+  import/prefer-default-export: 1
