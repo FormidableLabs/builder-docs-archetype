@@ -69,7 +69,9 @@ module.exports = {
         head: {
           appendChild: function () {}
         }
-      }
+      },
+      // Needed for ecology's clipboard.js dependency
+      Element: function () {}
     }),
     // Webpack's `--bail` option seems to **still** not be terminating the build
     // with a non-zero exit code. This is the suggested interim hack.
