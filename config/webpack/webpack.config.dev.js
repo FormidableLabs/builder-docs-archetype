@@ -23,7 +23,7 @@ module.exports = {
   context: SRC,
   devtool: "source-map",
   entry: {
-    app: [path.join(SRC, "components", "entry.jsx")]
+    app: [path.join(SRC, "components", "entry.js")]
   },
   stats: {
     colors: true,
