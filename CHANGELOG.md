@@ -1,5 +1,8 @@
 # Docs Archetype
 
+# 2.0.0 (2016 Jul 20)
+  * Collapse static-entry.jsx and entry.jsx to just entry.js
+
 # 1.0.6 (2016 Jul 20)
   * Add missing global variable to fix static builds for projects that depend on ecology
 
