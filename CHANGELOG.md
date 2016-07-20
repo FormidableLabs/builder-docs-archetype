@@ -1,5 +1,8 @@
 # Docs Archetype
 
+# 1.0.6 (2016 Jul 20)
+  * Add missing global variable to fix static builds for projects that depend on ecology
+
 # 1.0.5 (2016 Jun 21)
   * Add plugin to force build failure when running `webpack-static`
   * Add missing global variable to fix static build for `victory-docs`
