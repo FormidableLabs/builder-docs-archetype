@@ -19,7 +19,7 @@ var routes = require(path.join(ROOT, "static-routes"));
 
 module.exports = {
   entry: {
-    main: [path.join(SRC, "components", "static-entry.jsx")]
+    main: [path.join(SRC, "components", "entry.js")]
   },
   output: {
     path: path.join(ROOT, OUTPUT_DIR),
