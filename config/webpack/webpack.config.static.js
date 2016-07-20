@@ -69,7 +69,8 @@ module.exports = {
         head: {
           appendChild: function () {}
         }
-      }
+      },
+      Element: function () {}
     }),
     // Webpack's `--bail` option seems to **still** not be terminating the build
     // with a non-zero exit code. This is the suggested interim hack.
