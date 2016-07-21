@@ -60,6 +60,9 @@ module.exports = {
       }, {
         test: /\.md$/,
         loader: require.resolve("raw-loader")
+      }, {
+        test: /\.json$/,
+        loader: require.resolve("json-loader")
       }
     ]
   },
