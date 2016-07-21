@@ -1,5 +1,8 @@
 # Docs Archetype
 
+# 2.0.1 (2016 Jul 21)
+  * Add json-loader to webpack
+
 # 2.0.0 (2016 Jul 20)
   * Collapse static-entry.jsx and entry.jsx to just entry.js
 
