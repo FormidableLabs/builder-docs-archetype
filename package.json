@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --port 3000 --config node_modules/builder-docs-archetype/config/webpack/webpack.config.dev.js",
     "lint-react": "eslint --ext .js,.jsx src",
-    "lint-test": "eslint --ext .js,.jsx -c node_modules/builder-docs-archetype/config/eslint/.eslintrc-test test",
+    "lint-test": "eslint --ext .js,.jsx test",
     "lint-config": "eslint ./*.js",
     "lint": "builder concurrent lint-react lint-config lint-test",
     "webpack-static": "webpack --config node_modules/builder-docs-archetype/config/webpack/webpack.config.static.js --progress --bail",
