@@ -3,7 +3,9 @@
   "version": "2.0.1",
   "description": "An archetype for building static landing/documentation pages for our projects. (Development)",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "postinstall": "selenium-standalone install"
+  },
   "author": "Paula Lavalle <paula.lavalle@formidable.com>",
   "license": "MIT",
   "dependencies": {
