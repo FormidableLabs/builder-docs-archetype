@@ -1,5 +1,9 @@
 # Docs Archetype
 
+# 2.1.0 (2016 Jul 26)
+  * Add scripts and dependencies needed for functional tests
+  * Add spec-setup to bootstrap rowdy/selenium/servers
+
 # 2.0.1 (2016 Jul 21)
   * Add json-loader to webpack
 
