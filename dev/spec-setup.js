@@ -35,7 +35,7 @@ var serveDev = function (cb) {
   var webpack = require("webpack");
   var WebpackDevServer = require("webpack-dev-server");
 
-  var webpackCfg = require("../config/webpack/webpack.config.dev");
+  var webpackCfg = require("builder-docs-archetype/config/webpack/webpack.config.dev");
 
   var compiler = webpack(webpackCfg);
   var wdsServer = new WebpackDevServer(compiler, {
@@ -47,7 +47,7 @@ var serveDev = function (cb) {
   wdsServer.listen(SERVER_PORT, SERVER_HOST, cb);
 };
 
-global.TEST_FUNC_BASE_DIR = process.env.TEST_FUNC_BASE_DIR || "/";
+global.TEST_FUNC_BASE_DIR = process.env.TEST_FUNC_BASE_DIR || "";
 global.TEST_FUNC_BASE_URL = process.env.TEST_FUNC_BASE_URL || "http://" + SERVER_HOST + ":" + SERVER_PORT + global.TEST_FUNC_BASE_DIR;
 
 /*
@@ -60,7 +60,7 @@ var serveStatic = function (cb) {
   var ecstatic = require("ecstatic");
 
   http.createServer(
-    ecstatic({ root: "./build", baseDir: global.TEST_FUNC_BASE_DIR })
+    ecstatic({ root: "./build", baseDir: global.TEST_FUNC_BASE_DIR + "/" })
   ).listen(SERVER_PORT, SERVER_HOST, cb);
 };
 
@@ -79,7 +79,6 @@ before(function (done) {
     }
     return done();
   }
-
   return done();
 });
 
