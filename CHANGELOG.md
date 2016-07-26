@@ -1,5 +1,8 @@
 # Docs Archetype
 
+# 2.1.1 (2016 Jul 26)
+  * Fix npm install-selenium script
+
 # 2.1.0 (2016 Jul 26)
   * Add scripts and dependencies needed for functional tests
   * Add spec-setup to bootstrap rowdy/selenium/servers

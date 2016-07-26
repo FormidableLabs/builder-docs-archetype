@@ -1,6 +1,6 @@
 {
   "name": "builder-docs-archetype",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "An archetype for building static landing/documentation pages for our projects.",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "test-func-remote": "TEST_FUNC=remote mocha --opts ./test/func/mocha.opts",
     "test-func-static": "TEST_FUNC=static mocha --opts ./test/func/mocha.opts",
     "test-func-dev": "TEST_FUNC=dev mocha --opts ./test/func/mocha.opts",
-    "install-selenium": "./node_modules/builder-docs-archetype-dev/node_modules/.bin/selenium-standalone install"
+    "install-selenium": "selenium-standalone install"
   },
   "author": "Paula Lavalle <paula.lavalle@formidable.com>",
   "license": "MIT",
