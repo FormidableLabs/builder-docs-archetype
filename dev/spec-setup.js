@@ -47,28 +47,28 @@ var serveDev = function (cb) {
   wdsServer.listen(SERVER_PORT, SERVER_HOST, cb);
 };
 
+global.TEST_FUNC_BASE_DIR = process.env.TEST_FUNC_BASE_DIR || "/";
+global.TEST_FUNC_BASE_URL = process.env.TEST_FUNC_BASE_URL || "http://" + SERVER_HOST + ":" + SERVER_PORT + global.TEST_FUNC_BASE_DIR;
 
 /*
  * Serve static ./build dir
  */
 
 var serveStatic = function (cb) {
-  console.log("Starting static http-server...");
-  var httpServer = require("http-server");
-  var server = httpServer.createServer({
-    root: "./build"
-  });
-  server.listen(SERVER_PORT, SERVER_HOST, cb);
-};
+  console.log("Starting static server...");
+  var http = require("http");
+  var ecstatic = require("ecstatic");
 
+  http.createServer(
+    ecstatic({ root: "./build", baseDir: global.TEST_FUNC_BASE_DIR })
+  ).listen(SERVER_PORT, SERVER_HOST, cb);
+};
 
 /*
  * Before tests run, determine URL and server needs
  */
 
 before(function (done) {
-  global.TEST_FUNC_BASE_URL = process.env.TEST_FUNC_BASE_URL || "http://" + SERVER_HOST + ":" + SERVER_PORT + "/";
-
   switch (process.env.TEST_FUNC) {
   case "static": return serveStatic(done);
   case "dev": return serveDev(done);
