@@ -1,5 +1,8 @@
 # Docs Archetype
 
+# 3.0.0 (2016 Jul 26)
+  * Use ecstatic instead of http-server for static serving
+
 # 2.1.1 (2016 Jul 26)
   * Fix npm install-selenium script
 
