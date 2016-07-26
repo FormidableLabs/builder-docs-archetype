@@ -15,7 +15,7 @@
     "build-static": "builder run clean-static && builder run update-project && builder run webpack-static && builder run copy-assets",
     "clean-static": "rm -rf build",
     "open-static": "open http://localhost:8080",
-    "server-static": "ecstatic build",
+    "server-static": "ecstatic --port 8080 build",
     "builder:check": "eslint config",
     "test-func-remote": "TEST_FUNC=remote mocha --opts ./test/func/mocha.opts",
     "test-func-static": "TEST_FUNC=static mocha --opts ./test/func/mocha.opts",
