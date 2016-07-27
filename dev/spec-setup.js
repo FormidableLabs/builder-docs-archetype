@@ -1,10 +1,32 @@
 /* eslint-disable global-require, no-console */
-
 var rowdy = require("rowdy");
+var defaults = require("lodash.defaultsdeep");
 var MochaAdapter = rowdy.adapters.mocha;
 
-var config = require("rowdy/config");
-config.options.driverLib = "webdriverio";
+var SERVER_HOST = "127.0.0.1";
+var SERVER_PORT = "3000";
+
+// Base directory for app on server, e.g., /open-source/victory
+global.TEST_FUNC_BASE_DIR = process.env.TEST_FUNC_BASE_DIR || "";
+// Full app server url, e.g., http://localhost:3000/open-source/victory
+global.TEST_FUNC_BASE_URL = process.env.TEST_FUNC_BASE_URL || "http://" + SERVER_HOST + ":" + SERVER_PORT + global.TEST_FUNC_BASE_DIR;
+
+var base = require("rowdy/config");
+var config = defaults({
+  options: {
+    driverLib: "webdriverio"
+  },
+  settings: {
+    local: {
+      default: {
+        remote: {
+          // http://webdriver.io/guide/getstarted/configuration.html#baseUrl
+          baseUrl: global.TEST_FUNC_BASE_URL
+        }
+      }
+    }
+  }
+}, base);
 rowdy(config);
 
 var adapter = new MochaAdapter();
@@ -21,10 +43,6 @@ beforeEach(function () {
 
 adapter.afterEach();
 adapter.after();
-
-var SERVER_HOST = "127.0.0.1";
-var SERVER_PORT = "3000";
-
 
 /*
  * Serve src with webpack-dev-server
@@ -46,9 +64,6 @@ var serveDev = function (cb) {
 
   wdsServer.listen(SERVER_PORT, SERVER_HOST, cb);
 };
-
-global.TEST_FUNC_BASE_DIR = process.env.TEST_FUNC_BASE_DIR || "";
-global.TEST_FUNC_BASE_URL = process.env.TEST_FUNC_BASE_URL || "http://" + SERVER_HOST + ":" + SERVER_PORT + global.TEST_FUNC_BASE_DIR;
 
 /*
  * Serve static ./build dir
