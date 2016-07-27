@@ -1,10 +1,15 @@
 /* eslint-disable global-require, no-console */
-
 var rowdy = require("rowdy");
 var MochaAdapter = rowdy.adapters.mocha;
 
+var SERVER_HOST = "127.0.0.1";
+var SERVER_PORT = "3000";
+global.TEST_FUNC_BASE_DIR = process.env.TEST_FUNC_BASE_DIR || "";
+global.TEST_FUNC_BASE_URL = process.env.TEST_FUNC_BASE_URL || "http://" + SERVER_HOST + ":" + SERVER_PORT + global.TEST_FUNC_BASE_DIR;
+
 var config = require("rowdy/config");
 config.options.driverLib = "webdriverio";
+config.settings.local.default.remote = { baseUrl: global.TEST_FUNC_BASE_URL };
 rowdy(config);
 
 var adapter = new MochaAdapter();
@@ -21,10 +26,6 @@ beforeEach(function () {
 
 adapter.afterEach();
 adapter.after();
-
-var SERVER_HOST = "127.0.0.1";
-var SERVER_PORT = "3000";
-
 
 /*
  * Serve src with webpack-dev-server
@@ -46,9 +47,6 @@ var serveDev = function (cb) {
 
   wdsServer.listen(SERVER_PORT, SERVER_HOST, cb);
 };
-
-global.TEST_FUNC_BASE_DIR = process.env.TEST_FUNC_BASE_DIR || "";
-global.TEST_FUNC_BASE_URL = process.env.TEST_FUNC_BASE_URL || "http://" + SERVER_HOST + ":" + SERVER_PORT + global.TEST_FUNC_BASE_DIR;
 
 /*
  * Serve static ./build dir
