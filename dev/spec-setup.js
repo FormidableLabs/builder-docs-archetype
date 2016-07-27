@@ -5,7 +5,10 @@ var MochaAdapter = rowdy.adapters.mocha;
 
 var SERVER_HOST = "127.0.0.1";
 var SERVER_PORT = "3000";
+
+// Base directory for app on server, e.g., /open-source/victory
 global.TEST_FUNC_BASE_DIR = process.env.TEST_FUNC_BASE_DIR || "";
+// Full app server url, e.g., http://localhost:3000/open-source/victory
 global.TEST_FUNC_BASE_URL = process.env.TEST_FUNC_BASE_URL || "http://" + SERVER_HOST + ":" + SERVER_PORT + global.TEST_FUNC_BASE_DIR;
 
 var base = require("rowdy/config");
