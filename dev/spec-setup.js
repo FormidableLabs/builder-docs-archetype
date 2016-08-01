@@ -1,10 +1,13 @@
 /* eslint-disable global-require, no-console */
+var http = require("http");
 var rowdy = require("rowdy");
 var defaults = require("lodash.defaultsdeep");
 var MochaAdapter = rowdy.adapters.mocha;
 
 var SERVER_HOST = "127.0.0.1";
 var SERVER_PORT = "3000";
+var DEV_SERVER_TIMEOUT = 20000;
+var ELEM_WAIT = 200;
 
 // Base directory for app on server, e.g., /open-source/victory
 global.TEST_FUNC_BASE_DIR = process.env.TEST_FUNC_BASE_DIR || "";
@@ -31,8 +34,6 @@ rowdy(config);
 
 var adapter = new MochaAdapter();
 
-var ELEM_WAIT = 200;
-
 adapter.before();
 adapter.beforeEach();
 
@@ -50,6 +51,8 @@ adapter.after();
 
 var serveDev = function (cb) {
   console.log("Starting dev server...");
+  this.timeout(DEV_SERVER_TIMEOUT); // longer timeout to wait for dev server to build bundle
+
   var webpack = require("webpack");
   var WebpackDevServer = require("webpack-dev-server");
 
@@ -62,7 +65,16 @@ var serveDev = function (cb) {
     historyApiFallback: true
   });
 
-  wdsServer.listen(SERVER_PORT, SERVER_HOST, cb);
+  wdsServer.listen(SERVER_PORT, SERVER_HOST, function () {
+    // When the dev server's ready, hit the root url to trigger bundle build
+    http.get({
+      hostname: SERVER_HOST,
+      port: SERVER_PORT,
+      path: global.TEST_FUNC_BASE_DIR + "/"
+    }, function (res) {
+      cb();
+    });
+  });
 };
 
 /*
@@ -86,7 +98,7 @@ var serveStatic = function (cb) {
 before(function (done) {
   switch (process.env.TEST_FUNC) {
   case "static": return serveStatic(done);
-  case "dev": return serveDev(done);
+  case "dev": return serveDev.call(this, done);
   case "remote":
     if (!process.env.TEST_FUNC_BASE_URL) {
       console.warn("No TEST_FUNC_BASE_URL environment variable set. Defaulting to " +
