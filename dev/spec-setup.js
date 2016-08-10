@@ -6,7 +6,7 @@ var MochaAdapter = rowdy.adapters.mocha;
 
 var SERVER_HOST = "127.0.0.1";
 var SERVER_PORT = "3000";
-var DEV_SERVER_TIMEOUT = 20000;
+var DEV_SERVER_TIMEOUT = process.env.TEST_FUNC_DEV_SERVER_TIMEOUT || 20000;
 var ELEM_WAIT = 200;
 
 // Base directory for app on server, e.g., /open-source/victory
@@ -71,7 +71,7 @@ var serveDev = function (cb) {
       hostname: SERVER_HOST,
       port: SERVER_PORT,
       path: global.TEST_FUNC_BASE_DIR + "/"
-    }, function (res) {
+    }, function () {
       cb();
     });
   });
