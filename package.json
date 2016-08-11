@@ -1,8 +1,16 @@
 {
   "name": "builder-docs-archetype",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "An archetype for building static landing/documentation pages for our projects.",
   "main": "index.js",
+  "config": {
+    "test_func_mode": "dev",
+    "test_func_base_dir": "",
+    "test_func_base_url": "http://127.0.0.1:3000",
+    "test_func_dev_server_timeout": 20000,
+    "test_func_server_port": 3000,
+    "test_func_server_host": "127.0.0.1"
+  },
   "scripts": {
     "dev": "webpack-dev-server --port 3000 --config node_modules/builder-docs-archetype/config/webpack/webpack.config.dev.js",
     "lint-react": "eslint --ext .js,.jsx src",
@@ -17,9 +25,9 @@
     "open-static": "open http://localhost:8080",
     "server-static": "ecstatic --port 8080 build",
     "builder:check": "eslint config",
-    "test-func-remote": "TEST_FUNC=remote mocha --opts ./test/func/mocha.opts",
-    "test-func-static": "TEST_FUNC=static mocha --opts ./test/func/mocha.opts",
-    "test-func-dev": "TEST_FUNC=dev mocha --opts ./test/func/mocha.opts",
+    "test-func-remote": "npm_package_config_test_func_mode=remote mocha --opts ./test/func/mocha.opts",
+    "test-func-static": "npm_package_config_test_func_mode=static mocha --opts ./test/func/mocha.opts",
+    "test-func-dev": "npm_package_config_test_func_mode=dev mocha --opts ./test/func/mocha.opts",
     "install-selenium": "selenium-standalone install"
   },
   "author": "Paula Lavalle <paula.lavalle@formidable.com>",

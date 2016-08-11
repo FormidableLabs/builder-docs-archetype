@@ -2,17 +2,18 @@
 var http = require("http");
 var rowdy = require("rowdy");
 var defaults = require("lodash.defaultsdeep");
-var MochaAdapter = rowdy.adapters.mocha;
 
-var SERVER_HOST = "127.0.0.1";
-var SERVER_PORT = "3000";
-var DEV_SERVER_TIMEOUT = process.env.TEST_FUNC_DEV_SERVER_TIMEOUT || 20000;
+var BASE_URL = process.env.npm_package_config_test_func_base_url;
+var BASE_DIR = process.env.npm_package_config_test_func_base_dir;
+var SERVER_HOST = process.env.npm_package_config_test_func_server_host;
+var SERVER_PORT = process.env.npm_package_config_test_func_server_port;
+var DEV_SERVER_TIMEOUT = process.env.npm_package_config_test_func_dev_server_timeout;
+var MODE = process.env.npm_package_config_test_func_mode;
 var ELEM_WAIT = 200;
 
-// Base directory for app on server, e.g., /open-source/victory
-global.TEST_FUNC_BASE_DIR = process.env.TEST_FUNC_BASE_DIR || "";
-// Full app server url, e.g., http://localhost:3000/open-source/victory
-global.TEST_FUNC_BASE_URL = process.env.TEST_FUNC_BASE_URL || "http://" + SERVER_HOST + ":" + SERVER_PORT + global.TEST_FUNC_BASE_DIR;
+/*
+ * Setup Rowdy/Webdriverio
+ */
 
 var base = require("rowdy/config");
 var config = defaults({
@@ -24,7 +25,7 @@ var config = defaults({
       default: {
         remote: {
           // http://webdriver.io/guide/getstarted/configuration.html#baseUrl
-          baseUrl: global.TEST_FUNC_BASE_URL
+          baseUrl: BASE_URL + BASE_DIR
         }
       }
     }
@@ -32,16 +33,18 @@ var config = defaults({
 }, base);
 rowdy(config);
 
-var adapter = new MochaAdapter();
+/*
+ * Setup Mocha adapter
+ */
 
+var MochaAdapter = rowdy.adapters.mocha;
+var adapter = new MochaAdapter();
 adapter.before();
 adapter.beforeEach();
-
 beforeEach(function () {
-  return adapter.client
-    .timeoutsImplicitWait(ELEM_WAIT); // Set timeout for waiting on elements.
+  // Set default timeout for waiting on elements.
+  return adapter.client.timeoutsImplicitWait(ELEM_WAIT);
 });
-
 adapter.afterEach();
 adapter.after();
 
@@ -51,11 +54,9 @@ adapter.after();
 
 var serveDev = function (cb) {
   console.log("Starting dev server...");
-  this.timeout(DEV_SERVER_TIMEOUT); // longer timeout to wait for dev server to build bundle
 
   var webpack = require("webpack");
   var WebpackDevServer = require("webpack-dev-server");
-
   var webpackCfg = require("builder-docs-archetype/config/webpack/webpack.config.dev");
 
   var compiler = webpack(webpackCfg);
@@ -65,12 +66,14 @@ var serveDev = function (cb) {
     historyApiFallback: true
   });
 
+  // How long the test should wait before giving up
+  this.timeout(DEV_SERVER_TIMEOUT);
   wdsServer.listen(SERVER_PORT, SERVER_HOST, function () {
     // When the dev server's ready, hit the root url to trigger bundle build
     http.get({
       hostname: SERVER_HOST,
       port: SERVER_PORT,
-      path: global.TEST_FUNC_BASE_DIR + "/"
+      path: BASE_DIR + "/"
     }, function () {
       cb();
     });
@@ -87,28 +90,25 @@ var serveStatic = function (cb) {
   var ecstatic = require("ecstatic");
 
   http.createServer(
-    ecstatic({ root: "./build", baseDir: global.TEST_FUNC_BASE_DIR + "/" })
+    ecstatic({ root: "./build", baseDir: BASE_DIR + "/" })
   ).listen(SERVER_PORT, SERVER_HOST, cb);
 };
 
 /*
- * Before tests run, determine URL and server needs
+ * Before tests run, start a server if necessary
  */
 
 before(function (done) {
-  switch (process.env.TEST_FUNC) {
-  case "static": return serveStatic(done);
-  case "dev": return serveDev.call(this, done);
-  case "remote":
-    if (!process.env.TEST_FUNC_BASE_URL) {
-      console.warn("No TEST_FUNC_BASE_URL environment variable set. Defaulting to " +
-        global.TEST_FUNC_BASE_URL + "\n");
-    }
-    return done();
+  switch (MODE) {
+    case "static": return serveStatic.call(this, done);
+    case "dev":    return serveDev.call(this, done);
   }
+  console.log("Expecting remote server at " + BASE_URL + BASE_DIR);
   return done();
 });
 
 module.exports = {
-  adapter: adapter
+  adapter: adapter,
+  baseDir: BASE_DIR,
+  baseUrl: BASE_URL
 };

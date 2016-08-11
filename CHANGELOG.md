@@ -1,5 +1,9 @@
 # Docs Archetype
 
+# 4.0.0 (2016 Aug 11)
+  * Change how functional tests are configured, now via npm config
+  * Export baseUrl and baseDir instead of setting global variables
+
 # 3.0.2 (2016 Jul 26)
   * Add baseUrl to webdriverio config
 
