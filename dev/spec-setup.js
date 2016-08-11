@@ -1,5 +1,5 @@
 /* eslint-disable global-require, no-console */
-var http = require("http");
+var fetch = require("node-fetch");
 var rowdy = require("rowdy");
 var defaults = require("lodash.defaultsdeep");
 
@@ -69,14 +69,9 @@ var serveDev = function (cb) {
   // How long the test should wait before giving up
   this.timeout(DEV_SERVER_TIMEOUT);
   wdsServer.listen(SERVER_PORT, SERVER_HOST, function () {
-    // When the dev server's ready, hit the root url to trigger bundle build
-    http.get({
-      hostname: SERVER_HOST,
-      port: SERVER_PORT,
-      path: BASE_DIR + "/"
-    }, function () {
-      cb();
-    });
+    fetch("http://" + SERVER_HOST + ":" + SERVER_PORT + BASE_DIR + "/")
+      .then(function () { cb(); })
+      .catch(cb);
   });
 };
 
