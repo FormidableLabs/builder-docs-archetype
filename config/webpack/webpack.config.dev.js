@@ -2,6 +2,8 @@
 
 var path = require("path");
 var webpack = require("webpack");
+var cssnext = require("postcss-cssnext");
+var postcssImport = require("postcss-import");
 
 // Replace with `__dirname` if using in project root.
 var ROOT = process.cwd();
@@ -49,6 +51,13 @@ module.exports = {
           presets: ["es2015", "stage-1", "react"]
         }
       }, {
+        test: /\.css$/,
+        loaders: [
+          require.resolve("style-loader"),
+          require.resolve("css-loader"),
+          require.resolve("postcss-loader")
+        ]
+      }, {
         test: /.svg$/,
         loaders: [
           require.resolve("raw-loader"),
@@ -65,6 +74,12 @@ module.exports = {
         loader: require.resolve("json-loader")
       }
     ]
+  },
+  postcss: function (webpack) { //eslint-disable-line no-shadow
+    return [
+      postcssImport({addDependencyTo: webpack}),
+      cssnext
+    ];
   },
   plugins: [
     new webpack.NoErrorsPlugin()

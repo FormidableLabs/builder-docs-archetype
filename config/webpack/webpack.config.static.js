@@ -5,6 +5,7 @@ var webpack = require("webpack");
 
 var StaticSiteGeneratorPlugin = require("static-site-generator-webpack-plugin");
 var StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var base = require("./webpack.config.dev.js");
 
@@ -91,7 +92,8 @@ module.exports = {
           process.exit(1);
         }
       });
-    }
+    },
     /* eslint-enable no-console, no-invalid-this, no-magic-numbers, no-process-exit */
+    new ExtractTextPlugin("[name].[contenthash:8].css")
   ]
 };
