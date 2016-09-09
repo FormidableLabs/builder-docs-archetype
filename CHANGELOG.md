@@ -1,5 +1,8 @@
 # Docs Archetype
 
+# 4.0.0 (2016 Sept 9)
+* Upgrade Webpack to 1.13.2 (potentially a breaking change)
+
 # 3.0.2 (2016 Jul 26)
   * Add baseUrl to webdriverio config
 
