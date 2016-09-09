@@ -49,10 +49,13 @@ module.exports = {
       // Shim browser globals.
       navigator: {
         // Work around https://github.com/FormidableLabs/radium/issues/822
-        // Explanation: When `userAgent` is empty, radium will generate something like `display: flex,-webkit-flex,…`,
-        // which is invalid on ALL browsers. Forcing it to use a specific userAgent makes it appear right in evergreen browsers.
-        // For other browsers, Radium will fix the prefixing upon loading in the browser.
-        userAgent: "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2454.85 Safari/537.36"
+        // Explanation: When `userAgent` is empty, radium will generate
+        // something like `display: flex,-webkit-flex,…`, which is invalid on
+        // ALL browsers. Forcing it to use a specific userAgent makes it appear
+        // right in evergreen browsers. For other browsers, Radium will fix the
+        // prefixing upon loading in the browser.
+        userAgent: "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 " +
+          "(KHTML, like Gecko) Chrome/49.0.2454.85 Safari/537.36"
       },
       window: {
         // Optional client-side render checks whether document is undefined
