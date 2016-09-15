@@ -55,13 +55,12 @@ module.exports = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV || "staging")
       }
     }),
-    // new webpack.optimize.DedupePlugin(),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   }
-    // }),
-    // TODO: add uglify & dedup https://github.com/FormidableLabs/builder-docs-archetype/issues/1
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
     new StatsWriterPlugin({
       filename: "stats.json"
     }),
