@@ -27,9 +27,15 @@ module.exports = {
           presets: ["es2015", "stage-1", "react"]
         }
       }, {
-        test: /.(png|jpg|svg)$/,
+        test: /\.svg$/,
         loaders: [
           require.resolve("raw-loader"),
+          require.resolve("image-webpack-loader")
+        ]
+      }, {
+        test: /\.(png|jpg|gif)$/,
+        loaders: [
+          require.resolve("file-loader"),
           require.resolve("image-webpack-loader")
         ]
       }, {
