@@ -1,5 +1,9 @@
 # Docs Archetype
 
+# 4.1.0 (2016 Sept 16)
+* Add support for CSS files; extract into `styles.[hash].css` file for the static build
+* Add loader for JPG files
+
 # 4.0.0 (2016 Sept 9)
 * Upgrade Webpack to 1.13.2 (potentially a breaking change)
 
