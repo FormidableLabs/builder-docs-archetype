@@ -33,9 +33,10 @@ module.exports = {
           require.resolve("image-webpack-loader")
         ]
       }, {
-        test: /.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif)$/,
         loaders: [
-          require.resolve("file-loader")
+          require.resolve("file-loader"),
+          require.resolve("image-webpack-loader")
         ]
       }, {
         test: /\.hbs$/,
