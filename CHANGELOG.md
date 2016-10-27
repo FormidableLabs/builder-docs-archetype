@@ -1,5 +1,9 @@
 # Docs Archetype
 
+# 4.1.2 (2016 Sept 16)
+* Add victory-docs to babel parsing
+* Add history api fallback flag to dev task
+
 # 4.1.1 (2016 Sept 16)
 * Fix loader for JPG files (use file-loader)
 
