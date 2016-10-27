@@ -17,6 +17,7 @@ module.exports = {
         // Make sure to formidable-landers is excluded for `npm link` purposes
         include: [
           path.resolve(SRC),
+          path.resolve(ROOT, "node_modules", "victory-docs"),
           path.resolve(ROOT, "node_modules", "victory-chart"),
           path.resolve(ROOT, "node_modules", "victory-core"),
           path.resolve(ROOT, "node_modules", "victory-examples"),
