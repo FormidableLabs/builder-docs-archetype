@@ -1,5 +1,8 @@
 # Docs Archetype
 
+# 4.2.1 (2016 Oct 31)
+* Don’t transpile victory dependencies in webpack.
+
 # 4.2.0 (2016 Oct 31)
 * Add `npm version` workflow support + docs.
 
