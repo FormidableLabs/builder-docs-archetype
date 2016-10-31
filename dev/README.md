@@ -30,7 +30,7 @@ sure that you have a very modern `npm` binary:
 $ npm install -g npm
 ```
 
-Built files in `build/` should **not** be committeed during development or PRs.
+Built files in `build/` should **not** be committed during development or PRs.
 Instead we _only_ build and commit them for published, tagged releases. So
 the basic workflow is:
 

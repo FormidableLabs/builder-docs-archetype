@@ -1,6 +1,6 @@
 # Docs Archetype
 
-# Unreleased
+# 4.2.0 (2016 Oct 31)
 * Add `npm version` workflow support + docs.
 
 # 4.1.2 (2016 Sept 16)
