@@ -3,18 +3,67 @@ Builder Docs Archetype
 
 A [Builder][] archetype for Formidable static React landers.
 
-## Requirements
+## Landers
+
+### Integration
 
 1. In the root, you need to create a `./static-routes.js` file that exports an array
 of all the routes your heart desires.
 
-        module.exports = [
-          "/",
-          "/about",
-          "/pineapples"
-        ];
+```js
+module.exports = [
+  "/",
+  "/about",
+  "/pineapples"
+];
+```
 
-## Builder Dependencies
+### Lander Release
+
+To release a project _controlled_ by this archetype (e.g., `victory-docs`),
+use the following guide:
+
+**IMPORTANT - NPM**: To correctly run `preversion` your first step is to make
+sure that you have a very modern `npm` binary:
+
+```sh
+$ npm install -g npm
+```
+
+Built files in `build/` should **not** be committeed during development or PRs.
+Instead we _only_ build and commit them for published, tagged releases. So
+the basic workflow is:
+
+```sh
+# Make sure you have a clean, up-to-date `master`
+$ git pull
+$ git status # (should be no changes)
+
+# Choose a semantic update for the new version.
+# If you're unsure, read about semantic versioning at http://semver.org/
+$ npm version major|minor|patch -m "Version %s - INSERT_REASONS"
+
+# Push the `build/` directory, version commits, and tag:
+$ git push --follow-tags
+
+# And finally publish to `npm`!
+$ npm publish
+```
+
+And you've published!
+
+For additional information on the underlying NPM technologies and approaches,
+please review:
+
+* [`npm version`](https://docs.npmjs.com/cli/version): Runs verification,
+  builds `build/` via `scripts` commands.
+* [`npm publish`](https://docs.npmjs.com/cli/publish): Uploads to NPM.
+
+## Archetype
+
+This section applies to the archetype itself (`builder-docs-archetype`).
+
+### Builder Dependencies
 
 You can read the [Builder docs][] for the full story. Here is an overview of the
 Builder three-way dependency scheme:
@@ -27,13 +76,13 @@ Builder three-way dependency scheme:
   for the this archetype during development (self tests, checks, etc.) that
   are **not** part of the overall archetype outside workflow.
 
-## Checks, Tests
+### Checks, Tests
 
 Run `npm run builder:check`
 
-## Release
+### Archetype Release
 
-For tagged official releases _only_, make sure to:
+For tagged official releases _only_ of the archetype, make sure to:
 
 1. Bump `package.json` version
 2. Generate a new `ARCHETYPE-dev` `package.json`
