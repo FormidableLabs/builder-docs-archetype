@@ -14,7 +14,7 @@
     "lint-config": "eslint ./*.js",
     "lint-react": "eslint --ext .js,.jsx src",
     "lint-test": "eslint --ext .js,.jsx test",
-    "npm:preversion": "builder run lint && builder run build-static",
+    "npm:preversion": "builder run lint && builder --env='{\"NODE_ENV\":\"production\"}' run build-static",
     "open-static": "open http://localhost:8080",
     "server-static": "ecstatic --port 8080 build",
     "test-func-dev": "TEST_FUNC=dev mocha --opts ./test/func/mocha.opts",
