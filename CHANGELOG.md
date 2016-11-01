@@ -1,5 +1,8 @@
 # Docs Archetype
 
+# 4.2.2 (2016 Oct 31)
+* Add production flag as portable variable to npm:preversion task.
+
 # 4.2.1 (2016 Oct 31)
 * Don’t transpile victory dependencies in webpack.
 
