@@ -2,8 +2,6 @@
 
 var path = require("path");
 var webpack = require("webpack");
-var cssnext = require("postcss-cssnext");
-var postcssImport = require("postcss-import");
 
 // Replace with `__dirname` if using in project root.
 var ROOT = process.cwd();
@@ -43,12 +41,7 @@ module.exports = {
       }
     ])
   },
-  postcss: function (webpack) { //eslint-disable-line no-shadow
-    return [
-      postcssImport({addDependencyTo: webpack}),
-      cssnext
-    ];
-  },
+  postcss: base.postcss,
   plugins: [
     new webpack.NoErrorsPlugin()
   ]

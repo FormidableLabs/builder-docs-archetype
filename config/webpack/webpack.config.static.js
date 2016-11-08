@@ -2,8 +2,6 @@
 
 var path = require("path");
 var webpack = require("webpack");
-var postcssImport = require("postcss-import");
-var postcssnext = require("postcss-cssnext");
 
 var StaticSiteGeneratorPlugin = require("static-site-generator-webpack-plugin");
 var StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
@@ -42,12 +40,7 @@ module.exports = {
       }
     ])
   },
-  postcss: function (webpack) { //eslint-disable-line no-shadow
-    return [
-      postcssImport({ addDependencyTo: webpack }),
-      postcssnext
-    ];
-  },
+  postcss: base.postcss,
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
