@@ -1,6 +1,9 @@
 "use strict";
 
 var path = require("path");
+var postcssImport = require("postcss-import");
+var postcssNext = require("postcss-cssnext");
+var postcssInlineSvg = require("postcss-inline-svg");
 
 // Replace with `__dirname` if using in project root.
 var ROOT = process.cwd();
@@ -46,5 +49,12 @@ module.exports = {
         loader: require.resolve("json-loader")
       }
     ]
+  },
+  postcss: function (webpack) { // eslint-disable-line no-shadow
+    return [
+      postcssImport({ addDependencyTo: webpack }),
+      postcssNext,
+      postcssInlineSvg
+    ];
   }
 };
