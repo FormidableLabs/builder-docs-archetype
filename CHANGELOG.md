@@ -1,5 +1,8 @@
 # Docs Archetype
 
+# 4.3.2 (2016 Nov 8)
+* Add `postcss-inline-svg` loader to load inline SVG in .css files.
+
 # 4.2.2 (2016 Oct 31)
 * Add production flag as portable variable to npm:preversion task.
 
