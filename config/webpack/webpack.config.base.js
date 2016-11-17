@@ -2,6 +2,7 @@
 
 var path = require("path");
 var postcssImport = require("postcss-import");
+var postcssUrl = require("postcss-url");
 var postcssNext = require("postcss-cssnext");
 var postcssInlineSvg = require("postcss-inline-svg");
 
@@ -53,6 +54,7 @@ module.exports = {
   postcss: function (webpack) { // eslint-disable-line no-shadow
     return [
       postcssImport({ addDependencyTo: webpack }),
+      postcssUrl,
       postcssNext,
       postcssInlineSvg
     ];
