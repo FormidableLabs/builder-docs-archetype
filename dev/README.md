@@ -52,6 +52,12 @@ $ npm publish
 
 And you've published!
 
+For a reliable systems of releases, the landers should aim for versioning along these lines:
+
+- **Patch**: Typos, missing assets, broken styles, very minor copyedits.
+- **Minor**: Add a new blog post, change styles.
+- **Major**: Rearchitect how the lander works, remove pages, or something else huge.
+
 For additional information on the underlying NPM technologies and approaches,
 please review:
 

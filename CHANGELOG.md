@@ -1,5 +1,9 @@
 # Docs Archetype
 
+# 5.0.0 (2016 Nov 17)
+* Add `postcss-url` plugin to rewrite `url()` paths as necessary when they're referenced
+  relative to the file in which they're required.
+
 # 4.3.2 (2016 Nov 8)
 * Add `postcss-inline-svg` loader to load inline SVG in .css files.
 
