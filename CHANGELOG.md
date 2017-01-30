@@ -1,5 +1,8 @@
 # Docs Archetype
 
+# 6.0.0 (2017 Jan 29)
+* Replace shims with JSDOM for static webpack config.
+
 # 5.0.0 (2016 Nov 17)
 * Add `postcss-url` plugin to rewrite `url()` paths as necessary when they're referenced
   relative to the file in which they're required.
