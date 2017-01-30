@@ -36,6 +36,7 @@
     "handlebars": "^4.0.5",
     "handlebars-loader": "^1.1.4",
     "image-webpack-loader": "^1.6.3",
+    "jsdom": "^9.9.1",
     "json-loader": "^0.5.4",
     "postcss-cssnext": "^2.7.0",
     "postcss-import": "^8.1.2",
