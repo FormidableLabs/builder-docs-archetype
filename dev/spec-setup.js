@@ -38,7 +38,7 @@ adapter.beforeEach();
 
 beforeEach(function () {
   return adapter.client
-    .timeoutsImplicitWait(ELEM_WAIT); // Set timeout for waiting on elements.
+    .timeouts("implicit", ELEM_WAIT); // Set timeout for waiting on elements.
 });
 
 adapter.afterEach();
