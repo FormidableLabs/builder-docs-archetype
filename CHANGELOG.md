@@ -1,5 +1,8 @@
 # Docs Archetype
 
+# 6.0.1 (2017 May 02)
+* Replace deprecated webdriver method
+
 # 6.0.0 (2017 Jan 29)
 * Replace shims with JSDOM for static webpack config.
 
